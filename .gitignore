@@ -1,0 +1,40 @@
+# --------------------
+# C++ Builder specific files
+# --------------------
+
+# Compiled binaries and libraries
+*.exe
+*.dll
+*.bpl
+*.tds
+*.lib
+
+# Intermediate compilation and output files
+*.obj
+*.o
+*.a
+*.ilk
+*.pch
+*.tlb
+*.map
+*.stat
+*.log
+*.ncb
+*.pdb
+*.tgs
+*.res
+
+# Project configuration files (user specific)
+*.identcache
+*.local
+*.optset
+*.dsk
+*.map
+*.sim
+*.sds
+*.identcache
+*.cfg
+*.~*
+
+# History/Backup files
+__history
