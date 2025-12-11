@@ -12,5 +12,6 @@ class ChessBoard{
 	ChessPiece* getPieceAt(int x , int y);
 	void setPieceAt(int x, int y, ChessPiece* piece);
 	void movePiece(int fromX, int fromY, int toX, int toY);
-    void InitializeDefaultPosition();
+	void InitializeDefaultPosition();
+	bool isKingInCheckAfterMove(ChessMove& move,ChessState* state);
 };

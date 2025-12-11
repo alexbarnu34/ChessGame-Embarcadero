@@ -19,5 +19,7 @@ public:
     ChessPiece(PlayerColor c, int x, int y);
 	virtual vector<ChessMove> getPossibleMoves(const ChessBoard& board) const = 0;
 	virtual ~ChessPiece() = default;
-    PlayerColor getColor()const;
+	PlayerColor getColor()const;
+	int getX();
+    int getY();
 };
