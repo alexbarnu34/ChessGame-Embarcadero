@@ -14,4 +14,5 @@ class ChessBoard{
 	void movePiece(int fromX, int fromY, int toX, int toY);
 	void InitializeDefaultPosition();
 	bool isKingInCheckAfterMove(ChessMove& move,ChessState* state);
+    bool tryMove(ChessMove& move);
 };
