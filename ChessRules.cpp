@@ -5,6 +5,7 @@
 #include "ChessRules.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
+#include "ChessPiece1.h"
 #include <vector>
 using namespace std;
 bool ChessRules::isValidMove(ChessMove* move,ChessState* state){

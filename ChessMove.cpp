@@ -12,18 +12,18 @@ ChessMove::ChessMove(int  fromX,int  fromY,int toX, int toY){
   this->toY = toY;
 };
 
-int getfromX() const {
-    return this->fromX;
+int ChessMove::getfromX() const {
+	return this->fromX;
 }
 
-int getfromY()const{
+int ChessMove::getfromY()const{
 	return this->fromY;
 }
 
-int gettoX()const{
+int ChessMove::gettoX()const{
 	return this->toX;
 }
 
-int gettoY()const{
+int ChessMove::gettoY()const{
     return this->toY;
 }

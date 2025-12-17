@@ -5,6 +5,7 @@
 //---------------------------------------------------------------------------
 #endif
 #include <ChessMove.h>
+#include <vector>
 class ChessBoard{
 	ChessPiece* [8][8] t;
 	public:

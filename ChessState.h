@@ -5,6 +5,8 @@
 //---------------------------------------------------------------------------
 #endif
 
+#include "ChessBoard.h"
+
 enum class PlayerColor {White, Black};
 enum class GameStatus {Running, Check, Checkmate, Draw, Abandoned};
 

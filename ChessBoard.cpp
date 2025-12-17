@@ -3,6 +3,9 @@
 #pragma hdrstop
 
 #include "ChessBoard.h"
+#include "ChessState.h"
+#include <vector>
+using namespace std;
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 
