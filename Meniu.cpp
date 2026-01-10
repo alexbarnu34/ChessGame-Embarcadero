@@ -15,8 +15,6 @@ __fastcall TForm1::TForm1(TComponent* Owner)
 {
 }
 //---------------------------------------------------------------------------
-#include "Meniu.h"
-#include "GameFormUnit.h"
 void __fastcall TForm1::btnStartClick(TObject *Sender)
 {
    this->Hide();

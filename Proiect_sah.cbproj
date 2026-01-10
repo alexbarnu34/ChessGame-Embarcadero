@@ -189,8 +189,8 @@
             <DependentOn>ChessMove.h</DependentOn>
             <BuildOrder>4</BuildOrder>
         </CppCompile>
-        <CppCompile Include="ChessPiece1.cpp">
-            <DependentOn>ChessPiece1.h</DependentOn>
+        <CppCompile Include="ChessPiece.cpp">
+            <DependentOn>ChessPiece.h</DependentOn>
             <BuildOrder>3</BuildOrder>
         </CppCompile>
         <CppCompile Include="ChessRules.cpp">
@@ -228,7 +228,6 @@
             <BuildOrder>1</BuildOrder>
             <PCH>true</PCH>
         </PCHCompile>
-        <FormResources Include="GameFormUnit.dfm"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

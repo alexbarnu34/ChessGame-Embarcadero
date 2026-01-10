@@ -3,7 +3,6 @@
 #ifndef ChessRulesH
 #define ChessRulesH
 //---------------------------------------------------------------------------
-#endif
 #include "ChessMove.h"
 #include "ChessState.h"
 class ChessRules{
@@ -12,3 +11,4 @@ class ChessRules{
 	static bool isValidMove(ChessMove* move, ChessState* state);
 
 };
+#endif

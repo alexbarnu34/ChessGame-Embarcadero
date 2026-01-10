@@ -2,9 +2,11 @@
 
 #pragma hdrstop
 
-#include "ChessPiece1.h"
+#include "ChessPiece.h"
+#include "ChessBoard.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
+
 ChessPiece::ChessPiece(PlayerColor c,int x, int y){
 	this->color=c;
 	this->PositionX=x;
@@ -15,10 +17,10 @@ PlayerColor ChessPiece::getColor(){
     return this->color;
 }
 
-int ChessPiece::getX(){
+int ChessPiece::getX() const{
 	return this->PositionX;
 }
 
-int ChessPiece::getY(){
+int ChessPiece::getY() const{
     return this->PositionY;
 }

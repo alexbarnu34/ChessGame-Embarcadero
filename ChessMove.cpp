@@ -3,6 +3,7 @@
 #pragma hdrstop
 
 #include "ChessMove.h"
+#include "ChessPiece.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 ChessMove::ChessMove(int  fromX,int  fromY,int toX, int toY){
@@ -16,14 +17,14 @@ int ChessMove::getfromX() const {
 	return this->fromX;
 }
 
-int ChessMove::getfromY()const{
+int ChessMove::getfromY() const{
 	return this->fromY;
 }
 
-int ChessMove::gettoX()const{
+int ChessMove::gettoX() const{
 	return this->toX;
 }
 
-int ChessMove::gettoY()const{
+int ChessMove::gettoY(){
     return this->toY;
 }

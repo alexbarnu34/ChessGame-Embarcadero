@@ -3,11 +3,14 @@
 #ifndef ChessBoardH
 #define ChessBoardH
 //---------------------------------------------------------------------------
-#endif
-#include <ChessMove.h>
 #include <vector>
+
+class ChessPiece;
+class ChessMove;
+class ChessState;
+
 class ChessBoard{
-	ChessPiece* [8][8] t;
+	ChessPiece* t[8][8];
 	public:
 	ChessBoard();
 	ChessPiece* getPieceAt(int x , int y);
@@ -15,5 +18,6 @@ class ChessBoard{
 	void movePiece(int fromX, int fromY, int toX, int toY);
 	void InitializeDefaultPosition();
 	bool isKingInCheckAfterMove(ChessMove& move,ChessState* state);
-    bool tryMove(ChessMove& move);
+	bool tryMove(ChessMove& move);
 };
+#endif

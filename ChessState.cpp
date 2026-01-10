@@ -3,6 +3,7 @@
 #pragma hdrstop
 
 #include "ChessState.h"
+#include "ChessBoard.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 ChessState::ChessState(ChessBoard* board, PlayerColor color, GameStatus status){

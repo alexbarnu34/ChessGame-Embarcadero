@@ -4,6 +4,7 @@
 #pragma hdrstop
 
 #include "GameFormUnit.h"
+#include "ChessGame.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma resource "*.dfm"
@@ -23,3 +24,9 @@ void __fastcall TForm2::btnBackClick(TObject *Sender)
 	}
 }
 //---------------------------------------------------------------------------
+void __fastcall TForm2::FormCreate(TObject *Sender)
+{
+	ChessGame::getInstance()->initGame();
+}
+//---------------------------------------------------------------------------
+

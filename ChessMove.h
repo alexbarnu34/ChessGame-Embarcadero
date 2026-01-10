@@ -2,8 +2,10 @@
 
 #ifndef ChessMoveH
 #define ChessMoveH
+#include "ChessMove.h"
 //---------------------------------------------------------------------------
-#endif
+
+class ChessPiece;
 
 class ChessMove {
 	int fromX, fromY;
@@ -11,8 +13,9 @@ class ChessMove {
 	ChessPiece* piece;
 	public:
 	ChessMove(int  fromX,int  fromY,int toX, int toY);
-	int gefromX()const;
-	int gefromY()const;
+	int getfromX()const;
+	int getfromY()const;
 	int gettoX()const;
 	int gettoY()const;
 };
+#endif

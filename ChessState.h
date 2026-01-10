@@ -2,20 +2,24 @@
 
 #ifndef ChessStateH
 #define ChessStateH
+#include "Enum.h"
 //---------------------------------------------------------------------------
-#endif
 
-#include "ChessBoard.h"
+//enum class PlayerColor {White, Black};
+//enum class GameStatus {Running, Check, Checkmate, Draw, Abandoned};
 
-enum class PlayerColor {White, Black};
-enum class GameStatus {Running, Check, Checkmate, Draw, Abandoned};
+class ChessBoard;
 
 class ChessState{
 	ChessBoard* board;
 	PlayerColor color;
 	GameStatus status;
 	public:
+    ChessState();
 	ChessState(ChessBoard* board,PlayerColor color,GameStatus status);
 	ChessBoard* getBoard();
     PlayerColor* getColor();
 };
+#endif
+
+

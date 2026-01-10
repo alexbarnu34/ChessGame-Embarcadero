@@ -5,11 +5,12 @@
 #include "ChessRules.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
-#include "ChessPiece1.h"
 #include <vector>
 using namespace std;
+
+
 bool ChessRules::isValidMove(ChessMove* move,ChessState* state){
-	  ChessPiece* getPieceToMove= state->getBoard()->getPieceAt(move->gefromX(),move->gettoY());
+	  ChessPiece* getPieceToMove= state->getBoard()->getPieceAt(move->getfromX(),move->gettoY());
 
 	  if(getPieceToMove==nullptr){
 		return false;

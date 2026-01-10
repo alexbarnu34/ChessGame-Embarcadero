@@ -1025,8 +1025,7 @@
   c:\program\ files\ (x86)\embarcadero\studio\37.0\include\windows\vcl\Vcl.ListActns.hpp \
   c:\program\ files\ (x86)\embarcadero\studio\37.0\include\x86_64-w64-mingw32\tchar.h \
   c:\program\ files\ (x86)\embarcadero\studio\37.0\include\x86_64-w64-mingw32\sec_api\tchar_s.h \
-  ChessState.cpp ChessState.h ChessBoard.h \
-  C:\programe\GitHub\ChessGame-Embarcadero\ChessMove.h \
+  ChessState.cpp ChessState.h Enum.h ChessBoard.h \
   c:\program\ files\ (x86)\embarcadero\studio\37.0\include\x86_64-w64-mingw32\c++\v1\vector \
   c:\program\ files\ (x86)\embarcadero\studio\37.0\include\x86_64-w64-mingw32\c++\v1\__vector\vector_bool.h \
   c:\program\ files\ (x86)\embarcadero\studio\37.0\include\x86_64-w64-mingw32\c++\v1\__vector\pmr.h \
