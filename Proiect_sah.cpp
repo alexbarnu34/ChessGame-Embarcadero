@@ -3,6 +3,8 @@
 #include <vcl.h>
 #pragma hdrstop
 #include <tchar.h>
+#include "Meniu.h"
+#include "GameFormUnit.h"
 //---------------------------------------------------------------------------
 int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
 {

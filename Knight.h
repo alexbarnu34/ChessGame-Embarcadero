@@ -2,11 +2,11 @@
 
 #ifndef KnightH
 #define KnightH
-#include "ChessMove.h"
 #include "ChessPiece.h"
 //---------------------------------------------------------------------------
-class ChessPiece;
 class ChessBoard;
+class ChessMove;
+
 class Knight:public ChessPiece{
 public:
 	Knight(PlayerColor color, int x, int y);

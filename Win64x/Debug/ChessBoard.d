@@ -1,4 +1,4 @@
-.\Win64x\Debug\ChessGame.o: \
+.\Win64x\Debug\ChessBoard.o: \
   C:\programe\GitHub\ChessGame-Embarcadero\Proiect_sahPCH1.h \
   c:\program\ files\ (x86)\embarcadero\studio\37.0\include\windows\vcl\vcl.h \
   c:\program\ files\ (x86)\embarcadero\studio\37.0\include\windows\vcl\basepch0.h \
@@ -1025,10 +1025,12 @@
   c:\program\ files\ (x86)\embarcadero\studio\37.0\include\windows\vcl\Vcl.ListActns.hpp \
   c:\program\ files\ (x86)\embarcadero\studio\37.0\include\x86_64-w64-mingw32\tchar.h \
   c:\program\ files\ (x86)\embarcadero\studio\37.0\include\x86_64-w64-mingw32\sec_api\tchar_s.h \
-  ChessGame.cpp ChessGame.h ChessBoard.h \
+  ChessBoard.cpp ChessBoard.h \
   c:\program\ files\ (x86)\embarcadero\studio\37.0\include\x86_64-w64-mingw32\c++\v1\vector \
   c:\program\ files\ (x86)\embarcadero\studio\37.0\include\x86_64-w64-mingw32\c++\v1\__vector\vector_bool.h \
   c:\program\ files\ (x86)\embarcadero\studio\37.0\include\x86_64-w64-mingw32\c++\v1\__vector\pmr.h \
   c:\program\ files\ (x86)\embarcadero\studio\37.0\include\x86_64-w64-mingw32\c++\v1\__vector\erase.h \
   c:\program\ files\ (x86)\embarcadero\studio\37.0\include\x86_64-w64-mingw32\c++\v1\__vector\vector_bool_formatter.h \
-  ChessState.h Enum.h Knight.h ChessPiece.h
+  ChessState.h Enum.h \
+  C:\programe\GitHub\ChessGame-Embarcadero\ChessPiece.h \
+  C:\programe\GitHub\ChessGame-Embarcadero\Enum.h ChessMove.h

@@ -4,6 +4,7 @@
 
 #include "Knight.h"
 #include "ChessBoard.h"
+#include "ChessMove.h"
 #include <vector>
 //---------------------------------------------------------------------------
 #pragma package(smart_init)

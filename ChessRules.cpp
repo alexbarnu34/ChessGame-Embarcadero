@@ -3,9 +3,14 @@
 #pragma hdrstop
 
 #include "ChessRules.h"
+#include "ChessPiece.h"
+#include "ChessMove.h"
+#include "ChessBoard.h"
+#include "ChessState.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #include <vector>
+#include <string>
 using namespace std;
 
 
@@ -16,13 +21,13 @@ bool ChessRules::isValidMove(ChessMove* move,ChessState* state){
 		return false;
 	  }
 
-	  char typepiece=state->getBoard()->getPieceAt(move->gefromX(),move->gettoY())->getType();
+	  string typepiece=state->getBoard()->getPieceAt(move->getfromX(),move->gettoY())->getType_piece();
 
 	  if(state->getColor()!=getPieceToMove->getColor()){
 			return false;
 	  }
 
-	  vector<ChessMove> possiblemoves= getPieceToMove->getPossibleMoves(state->getBoard());
+	  vector<ChessMove> possiblemoves= getPieceToMove->getPossibleMoves(*(state->getBoard()));
 	  vector<ChessMove> goToMove;
 	  for(auto possiblemove: possiblemoves){
 			if(possiblemove.gettoX()== move ->gettoX() && possiblemove.gettoY() == move ->gettoY()){

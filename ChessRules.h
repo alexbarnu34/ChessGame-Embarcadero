@@ -3,8 +3,10 @@
 #ifndef ChessRulesH
 #define ChessRulesH
 //---------------------------------------------------------------------------
-#include "ChessMove.h"
-#include "ChessState.h"
+
+class ChessMove;
+class ChessState;
+
 class ChessRules{
 	ChessRules()=delete;
 	public:

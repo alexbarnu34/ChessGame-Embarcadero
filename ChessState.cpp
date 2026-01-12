@@ -16,6 +16,6 @@ ChessBoard* ChessState::getBoard(){
 	return this->board;
 }
 
-PlayerColor ChessState::getColor(){
+PlayerColor ChessState::getColor()const {
     return this->color;
 }

@@ -9,8 +9,11 @@
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 
+ChessGame* ChessGame::instance=nullptr;
+
 ChessGame::ChessGame(){
-	this->state = new ChessState(this->board, PlayerColor::White);
+	this->board = new ChessBoard();
+	this->state = new ChessState(this->board, PlayerColor::White,GameStatus::Running);
 }
 
 ChessGame* ChessGame::getInstance(){
@@ -21,8 +24,8 @@ ChessGame* ChessGame::getInstance(){
 }
 
 void ChessGame :: initGame(){
-      this->state.getBoard()->clear();
+	  this->state->getBoard()->clear();
 
-	this->state.getBoard()->setPieceAt(1, 0, new Knight(PlayerColor::White,1,0 ));
-	this->state.getBoard()->setPieceAt(6, 0, new Knight(PlayeColor::Black,6,0));
+	this->state->getBoard()->setPieceAt(1, 0, new Knight(PlayerColor::White,1,0 ));
+	this->state->getBoard()->setPieceAt(6, 0, new Knight(PlayerColor::Black,6,0));
 }

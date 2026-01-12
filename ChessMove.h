@@ -2,7 +2,6 @@
 
 #ifndef ChessMoveH
 #define ChessMoveH
-#include "ChessMove.h"
 //---------------------------------------------------------------------------
 
 class ChessPiece;

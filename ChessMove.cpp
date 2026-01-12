@@ -11,6 +11,7 @@ ChessMove::ChessMove(int  fromX,int  fromY,int toX, int toY){
   this->fromY= fromY;
   this->toX = toX;
   this->toY = toY;
+  this->piece=nullptr;
 };
 
 int ChessMove::getfromX() const {
@@ -25,6 +26,6 @@ int ChessMove::gettoX() const{
 	return this->toX;
 }
 
-int ChessMove::gettoY(){
+int ChessMove::gettoY()const{
     return this->toY;
 }

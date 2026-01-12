@@ -5,14 +5,12 @@
 #include "ChessBoard.h"
 #include "ChessState.h"
 //---------------------------------------------------------------------------
-
-ChessGame::instance=nullptr;
 class ChessGame{
-	ChessBoard board;
-	ChessState state;
+	ChessBoard* board;
+	ChessState* state;
 	static ChessGame* instance;
 
-	ChessGame(){}
+	ChessGame();
 
 	public:
 	void initGame();

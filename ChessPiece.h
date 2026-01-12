@@ -5,18 +5,18 @@
 //---------------------------------------------------------------------------
 #include <vector>
 #include "Enum.h"
-#include "ChessPiece.h"
-#include "ChessMove.h"
+#include <string>
 
 using namespace std;
 
 class ChessBoard;
+class ChessMove;
 
 class ChessPiece {
 private:
 	PlayerColor color;
 	int PositionX, PositionY;
-	char type_piece;
+	string type_piece;
 
 public:
 	ChessPiece(PlayerColor c, int x, int y);
@@ -25,5 +25,6 @@ public:
 	PlayerColor getColor()const;
 	int getX() const;
 	int getY() const;
+	string getType_piece() const;
 };
 #endif
