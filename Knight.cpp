@@ -13,11 +13,7 @@ Knight::Knight(PlayerColor color, int x, int y): ChessPiece(color, x, y)
 
 }
 
-#include <vector> // Asigură-te că e prima linie
-#include "Knight.h"
-#include "ChessMove.h"
 
-// ... (constructorul rămâne la fel)
 
 // 1. Verificăm semnătura: scoatem 'override' și folosim 'std::' peste tot
 vector<ChessMove> Knight::getPossibleMoves(const ChessBoard& board) const  {

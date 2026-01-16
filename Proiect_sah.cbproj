@@ -228,6 +228,10 @@
             <BuildOrder>1</BuildOrder>
             <PCH>true</PCH>
         </PCHCompile>
+        <CppCompile Include="Rook.cpp">
+            <DependentOn>Rook.h</DependentOn>
+            <BuildOrder>12</BuildOrder>
+        </CppCompile>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

@@ -13,7 +13,7 @@ class ChessBoard{
 	ChessPiece* t[8][8];
 	public:
 	ChessBoard();
-	ChessPiece* getPieceAt(int x , int y);
+	ChessPiece* getPieceAt(int x , int y)const;
 	void setPieceAt(int x, int y, ChessPiece* piece);
 	void movePiece(int fromX, int fromY, int toX, int toY);
 	void InitializeDefaultPosition();

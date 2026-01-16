@@ -77,13 +77,25 @@ bool ChessBoard::isKingInCheckAfterMove(ChessMove& move,ChessState* state){
 }
 
 void ChessBoard::clear() {
-    // Va fi implementat mâine
+    for (int i = 0; i < 8; i++) {
+        for (int j = 0; j < 8; j++) {
+            if (t[i][j] != nullptr) {
+                delete t[i][j];
+				t[i][j] = nullptr;
+            }
+        }
+    }
 }
 
 void ChessBoard::setPieceAt(int x, int y, ChessPiece* piece) {
-    // Va fi implementat mâine
+	if (x >= 0 && x < 8 && y >= 0 && y < 8) {
+		t[x][y] = piece;
+	}
 }
 
-ChessPiece* ChessBoard::getPieceAt(int x, int y) {
-    return nullptr; // Returneazã ceva temporar
+ChessPiece* ChessBoard::getPieceAt(int x, int y) const {
+	if (x >= 0 && x < 8 && y >= 0 && y < 8) {
+		return t[x][y];
+    }
+    return nullptr;
 }
