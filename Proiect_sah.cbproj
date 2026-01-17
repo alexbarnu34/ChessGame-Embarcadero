@@ -177,6 +177,10 @@
         <AppDPIAwarenessMode>PerMonitorV2</AppDPIAwarenessMode>
     </PropertyGroup>
     <ItemGroup>
+        <CppCompile Include="Bishop.cpp">
+            <DependentOn>Bishop.h</DependentOn>
+            <BuildOrder>13</BuildOrder>
+        </CppCompile>
         <CppCompile Include="ChessBoard.cpp">
             <DependentOn>ChessBoard.h</DependentOn>
             <BuildOrder>5</BuildOrder>
@@ -211,6 +215,10 @@
             <DependentOn>GameFormUnit.h</DependentOn>
             <BuildOrder>11</BuildOrder>
         </CppCompile>
+        <CppCompile Include="King.cpp">
+            <DependentOn>King.h</DependentOn>
+            <BuildOrder>16</BuildOrder>
+        </CppCompile>
         <CppCompile Include="Knight.cpp">
             <DependentOn>Knight.h</DependentOn>
             <BuildOrder>6</BuildOrder>
@@ -221,6 +229,10 @@
             <DependentOn>Meniu.h</DependentOn>
             <BuildOrder>2</BuildOrder>
         </CppCompile>
+        <CppCompile Include="Pawn.cpp">
+            <DependentOn>Pawn.h</DependentOn>
+            <BuildOrder>15</BuildOrder>
+        </CppCompile>
         <CppCompile Include="Proiect_sah.cpp">
             <BuildOrder>0</BuildOrder>
         </CppCompile>
@@ -228,6 +240,10 @@
             <BuildOrder>1</BuildOrder>
             <PCH>true</PCH>
         </PCHCompile>
+        <CppCompile Include="Queen.cpp">
+            <DependentOn>Queen.h</DependentOn>
+            <BuildOrder>14</BuildOrder>
+        </CppCompile>
         <CppCompile Include="Rook.cpp">
             <DependentOn>Rook.h</DependentOn>
             <BuildOrder>12</BuildOrder>

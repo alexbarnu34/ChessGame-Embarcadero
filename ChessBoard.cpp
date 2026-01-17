@@ -6,6 +6,7 @@
 #include "ChessState.h"
 #include <ChessPiece.h>
 #include "ChessMove.h"
+#include "ChessRules.h"
 #include <vector>
 #include <string>
 using namespace std;
@@ -48,32 +49,21 @@ bool ChessBoard::tryMove(ChessMove& move){
     return false;
 }
 
-bool ChessBoard::isKingInCheckAfterMove(ChessMove& move,ChessState* state){
-	int king_poz_x=8;
-	int king_poz_y=8;
-	vector<int> move_to_x_opponent;
-	vector<int> move_to_y_opponent;
-	int fromX=move.getfromX();
-	int fromY=move.getfromY();
-	ChessPiece* piece = t[fromX][fromY];
-	for(int i=0;i<8;i++){
-		for(int j=0;j<8;j++){
-			if(t[i][j]->getType_piece()=="King" && t[i][j]->getColor()==state->getColor()){
-				king_poz_x=i;
-				king_poz_y=j;
-			}
-		}
-	}
+bool ChessBoard::isKingInCheckAfterMove(ChessMove& move, ChessState* state) {
 
-	for(int i=0;i<8;i++){
-		for(int j=0;j<8;j++){
-			 vector<ChessMove> OpponentPossibleMoves = t[i][j]->getPossibleMoves(*(state->getBoard())) ;
-			 for(auto opponentmove:OpponentPossibleMoves){
+	ChessPiece* pieceToMove = getPieceAt(move.getfromX(), move.getfromY());
+	ChessPiece* capturedPiece = getPieceAt(move.gettoX(), move.gettoY());
 
-			 }
-		}
-	}
-    return true;
+	setPieceAt(move.gettoX(), move.gettoY(), pieceToMove);
+	setPieceAt(move.getfromX(), move.getfromY(), nullptr);
+
+	ChessRules referee;
+    bool inCheck = referee.isChecked(state->getColor(), this);
+
+	setPieceAt(move.getfromX(), move.getfromY(), pieceToMove);
+    setPieceAt(move.gettoX(), move.gettoY(), capturedPiece);
+
+    return inCheck;
 }
 
 void ChessBoard::clear() {

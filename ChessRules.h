@@ -8,9 +8,10 @@ class ChessMove;
 class ChessState;
 
 class ChessRules{
-	ChessRules()=delete;
+	ChessRules()=default;
 	public:
-	static bool isValidMove(ChessMove* move, ChessState* state);
+	bool isValidMove(ChessMove* move, ChessState* state);
+	bool isChecked(PlayerColor color, ChessBoard* board);
 
 };
 #endif

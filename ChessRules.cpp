@@ -50,6 +50,10 @@ bool ChessRules::isValidMove(ChessMove* move,ChessState* state){
 		return false;
 	  }
 
+	  if (state->getBoard()->isKingInCheckAfterMove(*move, state)) {
+		return false;
+	}
+
 	  return true;
 }
 
