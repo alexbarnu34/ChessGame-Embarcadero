@@ -29,3 +29,11 @@ int ChessPiece::getY() const{
 string ChessPiece::getType_piece() const{
     return this->type_piece;
 }
+
+int ChessPiece::setX(int x){
+	this->PositionX=x;
+}
+
+int ChessPiece::setY(int y){
+    this->PositionY=y;
+}

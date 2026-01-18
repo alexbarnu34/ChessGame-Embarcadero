@@ -7,6 +7,12 @@
 #include <ChessPiece.h>
 #include "ChessMove.h"
 #include "ChessRules.h"
+#include "Pawn.h"
+#include "Rook.h"
+#include "Knight.h"
+#include "Bishop.h"
+#include "Queen.h"
+#include "King.h"
 #include <vector>
 #include <string>
 using namespace std;
@@ -89,3 +95,41 @@ ChessPiece* ChessBoard::getPieceAt(int x, int y) const {
     }
     return nullptr;
 }
+
+void ChessBoard::movePiece(int fromX, int fromY, int toX, int toY) {
+	ChessPiece* pieceToMove = t[fromX][fromY];
+	ChessPiece* targetPiece = t[toX][toY];
+
+    if (targetPiece != nullptr) {
+        delete targetPiece;
+    }
+
+    t[toX][toY] = pieceToMove;
+    t[fromX][fromY] = nullptr;
+
+}
+
+void ChessBoard::InitializeDefaultPosition() {
+	clear();
+
+	t[0][0] = new Rook(PlayerColor::Black, 0, 0);
+	t[0][1] = new Knight(PlayerColor::Black, 0, 1);
+	t[0][2] = new Bishop(PlayerColor::Black, 0, 2);
+	t[0][3] = new Queen(PlayerColor::Black, 0, 3);
+	t[0][4] = new King(PlayerColor::Black, 0, 4);
+	t[0][5] = new Bishop(PlayerColor::Black, 0, 5);
+	t[0][6] = new Knight(PlayerColor::Black, 0, 6);
+	t[0][7] = new Rook(PlayerColor::Black, 0, 7);
+	for (int i = 0; i < 8; i++) t[1][i] = new Pawn(PlayerColor::Black, 1, i);
+
+    for (int i = 0; i < 8; i++) t[6][i] = new Pawn(PlayerColor::White, 6, i);
+	t[7][0] = new Rook(PlayerColor::White, 7, 0);
+	t[7][1] = new Knight(PlayerColor::White, 7, 1);
+	t[7][2] = new Bishop(PlayerColor::White, 7, 2);
+	t[7][3] = new Queen(PlayerColor::White, 7, 3);
+	t[7][4] = new King(PlayerColor::White, 7, 4);
+	t[7][5] = new Bishop(PlayerColor::White, 7, 5);
+	t[7][6] = new Knight(PlayerColor::White, 7, 6);
+	t[7][7] = new Rook(PlayerColor::White, 7, 7);
+}
+

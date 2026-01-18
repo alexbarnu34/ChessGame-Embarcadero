@@ -19,6 +19,8 @@ class ChessGame{
 
 	static ChessGame* getInstance();
 
+    bool makeMove(int fromX, int fromY, int toX, int toY);
+
 };
 
 #endif

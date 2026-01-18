@@ -4,7 +4,10 @@
 #define PawnH
 #include "ChessPiece.h"
 //---------------------------------------------------------------------------
-class Pawn :public class ChessPiece{
+class ChessBoard;
+class ChessMove;
+
+class Pawn :public ChessPiece{
 	Pawn(PlayerColor Color, int x, int y);
     virtual vector<ChessMove> getPossibleMoves(const ChessBoard& board) const override;
 };

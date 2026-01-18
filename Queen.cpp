@@ -3,12 +3,14 @@
 #pragma hdrstop
 
 #include "Queen.h"
+#include "ChessBoard.h"
+#include "ChessMove.h"
 #include <vector>
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 using namespace std;
 
-Queen :: Queen(PlayerColor Color,int x, int y):ChessPiece(PlayerColor c, int x, int y){
+Queen :: Queen(PlayerColor Color,int x, int y):ChessPiece(Color,  x,  y){
 
 }
 

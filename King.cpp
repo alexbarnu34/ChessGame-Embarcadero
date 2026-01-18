@@ -3,6 +3,9 @@
 #pragma hdrstop
 
 #include "King.h"
+#include "ChessBoard.h"
+#include "ChessMove.h"
+#include <vector>
 //---------------------------------------------------------------------------
 using namespace std;
 
@@ -14,8 +17,8 @@ vector<ChessMove> King::getPossibleMoves(const ChessBoard& board) const {
     int dy[] = {-1, 0, 1, -1, 1, -1, 0, 1};
 
     for (int i = 0; i < 8; i++) {
-        int nx = x + dx[i];
-        int ny = y + dy[i];
+		int nx = x_current + dx[i];
+        int ny = y_current + dy[i];
 
         if (nx >= 0 && nx < 8 && ny >= 0 && ny < 8) {
 			ChessPiece* found_piece = board.getPieceAt(nx, ny);

@@ -9,7 +9,7 @@
 //---------------------------------------------------------------------------
 using namespace std;
 
-Rook::Rook(PlayerColor color,int x, int y):ChessPiece(PlayerColor,int x,int y){
+Rook::Rook(PlayerColor color,int x, int y):ChessPiece(color, x, y){
 
 }
 

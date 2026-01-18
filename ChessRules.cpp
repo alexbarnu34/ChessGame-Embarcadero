@@ -57,51 +57,61 @@ bool ChessRules::isValidMove(ChessMove* move,ChessState* state){
 	  return true;
 }
 
-/*
-bool ChessRules::isValidMove(ChessMove* move, ChessState* state) {
 
-    // (PAS 1) VERIFICARE LIMITĂ (Out of Bounds) - MUTATĂ SUS
-    // Se verifică destinația. Simplificat din logica ta:
-    if (move->getToX() < 0 || move->getToX() >= 8 ||
-        move->getToY() < 0 || move->getToY() >= 8) {
-        return false;
+bool ChessRules::isChecked(PlayerColor color, ChessBoard* board) {
+    int kingX = -1;
+    int kingY = -1;
+
+	for (int i = 0; i < 8; i++) {
+        for (int j = 0; j < 8; j++) {
+			ChessPiece* p = board->getPieceAt(i, j);
+
+            if (p != nullptr && p->getColor() == color && p->getType_piece() == "King") {
+                kingX = i;
+                kingY = j;
+				break;
+			}
+		}
+		if (kingX != -1) break;
     }
 
-    // Obținem piesa de mutat (de la poziția de start)
-    ChessPiece* pieceToMove = state->getBoard()->getPieceAt(move->getFromX(), move->getFromY());
+	if (kingX == -1) return false;
 
-    // (PAS 2) VERIFICARE DE BAZĂ: Piesă/Culoare
-    if (pieceToMove == nullptr) {
-        return false; // Nu există piesă la start
-    }
-    if (state->getColor() != pieceToMove->getColor()) {
-        return false; // Nu e tura ta
-    }
+    for (int i = 0; i < 8; i++) {
+		for (int j = 0; j < 8; j++) {
+			ChessPiece* enemyPiece = board->getPieceAt(i, j);
 
-    // (PAS 3) VERIFICARE DESTINAȚIE INIȚIALĂ (Piesă proprie?)
-    ChessPiece* pieceToPosition = state->getBoard()->getPieceAt(move->getToX(), move->getToY());
-    if (pieceToPosition != nullptr && pieceToMove->getColor() == pieceToPosition->getColor()) {
-        return false; // Destinația este ocupată de piesa ta
-    }
+			if (enemyPiece != nullptr && enemyPiece->getColor() != color) {
+				vector<ChessMove> enemyMoves = enemyPiece->getPossibleMoves(*board);
 
-    // (PAS 4) VERIFICARE POLIMORFICĂ (Regula de mișcare a piesei)
-    std::vector<ChessMove> possibleMoves = pieceToMove->getPossibleMoves(state->getBoard());
+				for (const auto& move : enemyMoves) {
+					if (move.gettoX() == kingX && move.gettoY() == kingY) {
+						return true;
+                    }
+				}
+			}
+		}
+	}
 
-    bool moveFound = false;
-    for (const auto& possibleMove : possibleMoves) {
-        // ATENȚIE: possibleMove este obiect (punct!)
-        if (possibleMove.getToX() == move->getToX() && possibleMove.getToY() == move->getToY()) {
-            moveFound = true;
-            break;
+	return false;
+}
+
+bool ChessRules::isCheckmate(PlayerColor color, ChessBoard* board) {
+	if (!isChecked(color, board)) return false;
+
+    for (int i = 0; i < 8; i++) {
+        for (int j = 0; j < 8; j++) {
+            ChessPiece* p = board->getPieceAt(i, j);
+			if (p != nullptr && p->getColor() == color) {
+				vector<ChessMove> moves = p->getPossibleMoves(*board);
+				for (auto& m : moves) {
+					if (!board->isKingInCheckAfterMove(m, new ChessState(board, color))) {
+                        return false;
+                    }
+                }
+            }
         }
     }
-    if (!moveFound) {
-        return false; // Mutarea este ilegală (ex: Calul mută drept)
-    }
-
-    // (PAS 5) VERIFICARE FINALĂ (ȘAH/SIGURANȚĂ REGE) - Urmează
-    // Aici vom apela funcția isKingInCheckAfterMove
-
-    return true; // Toate verificările au trecut. Mutarea este legală.
+	return true;
 }
-*/
+

@@ -25,6 +25,8 @@ public:
 	PlayerColor getColor()const;
 	int getX() const;
 	int getY() const;
+	int setX(int x);
+    int setY(int y);
 	string getType_piece() const;
 };
 #endif

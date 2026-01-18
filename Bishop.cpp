@@ -3,12 +3,14 @@
 #pragma hdrstop
 
 #include "Bishop.h"
+#include "ChessBoard.h"
+#include "ChessMove.h"
 #include <vector>
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 using namespace std;
 
-Bishop::Bishop(PlayerColor Color, int x, int y):ChessPiece(PlayerColor Color, int x, int y){
+Bishop::Bishop(PlayerColor Color, int x, int y):ChessPiece(Color, x,  y){
 
 }
 

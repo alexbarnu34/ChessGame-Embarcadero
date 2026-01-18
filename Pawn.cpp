@@ -3,15 +3,16 @@
 #pragma hdrstop
 
 #include "Pawn.h"
+#include "ChessBoard.h"
+#include "ChessMove.h"
+#include <vector>
 //---------------------------------------------------------------------------
 using namespace std;
 
-Pawn ::Pawn(PlayerColor Color,int x, int y):ChessPiece (PlayerColor Color,int x, int y){
+Pawn ::Pawn(PlayerColor Color,int x, int y):ChessPiece (Color, x,  y){
 }
 
 vector<ChessMove> Pawn::getPossibleMoves(const ChessBoard& board) const  {
-
-  vector<ChessMove> Pawn::getPossibleMoves(const ChessBoard& board) const {
     int x = this->getX();
     int y = this->getY();
 	vector<ChessMove> moves;
@@ -38,7 +39,6 @@ vector<ChessMove> Pawn::getPossibleMoves(const ChessBoard& board) const  {
         }
     }
     return moves;
-}
 }
 
 #pragma package(smart_init)

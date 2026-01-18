@@ -17,6 +17,7 @@ __published:	// IDE-managed Components
 private:	// User declarations
 public:		// User declarations
 	__fastcall TForm2(TComponent* Owner);
+    void __fastcall FormClose(TObject *Sender, TCloseAction &Action);
 };
 //---------------------------------------------------------------------------
 extern PACKAGE TForm2 *Form2;

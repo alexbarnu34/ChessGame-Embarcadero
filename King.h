@@ -4,9 +4,12 @@
 #define KingH
 #include "ChessPiece.h"
 //---------------------------------------------------------------------------
-class King:public class ChessPiece{
+class ChessBoard;
+class ChessMove;
+
+class King:public  ChessPiece{
 	public:
-	King(PlayerColor Color,int x, int y):ChessPiece(PlayerColor, int x, int y);
-    virtual vector<ChessMove> getPossibleMoves (const CHessBoard& board) const override;
+	King(PlayerColor Color,int x, int y);
+    virtual vector<ChessMove> getPossibleMoves (const ChessBoard& board) const override;
 };
 #endif
