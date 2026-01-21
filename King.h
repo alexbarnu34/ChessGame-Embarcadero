@@ -3,6 +3,7 @@
 #ifndef KingH
 #define KingH
 #include "ChessPiece.h"
+
 //---------------------------------------------------------------------------
 class ChessBoard;
 class ChessMove;

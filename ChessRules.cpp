@@ -105,7 +105,7 @@ bool ChessRules::isCheckmate(PlayerColor color, ChessBoard* board) {
 			if (p != nullptr && p->getColor() == color) {
 				vector<ChessMove> moves = p->getPossibleMoves(*board);
 				for (auto& m : moves) {
-					if (!board->isKingInCheckAfterMove(m, new ChessState(board, color))) {
+					if (!board->isKingInCheckAfterMove(m, new ChessState(board, color,GameStatus::Running))) {
                         return false;
                     }
                 }

@@ -10,7 +10,7 @@
 using namespace std;
 
 Rook::Rook(PlayerColor color,int x, int y):ChessPiece(color, x, y){
-
+	 this->type_piece = "Rook";
 }
 
 vector<ChessMove> Rook::getPossibleMoves(const ChessBoard& board) const {

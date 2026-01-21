@@ -19,8 +19,15 @@ class ChessGame{
 
 	static ChessGame* getInstance();
 
+	ChessState* getState();
+
+    ChessBoard* getBoard();
+
     bool makeMove(int fromX, int fromY, int toX, int toY);
 
+	int selectedX, selectedY;
+
+	bool pieceSelected;
 };
 
 #endif

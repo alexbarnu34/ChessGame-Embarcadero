@@ -18,7 +18,8 @@ class ChessState{
     ChessState();
 	ChessState(ChessBoard* board,PlayerColor color,GameStatus status);
 	ChessBoard* getBoard();
-    PlayerColor getColor() const;
+	PlayerColor getColor() const;
+    void setColor(PlayerColor newColor);
 };
 #endif
 

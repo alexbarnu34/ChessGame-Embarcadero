@@ -11,7 +11,7 @@
 using namespace std;
 
 Bishop::Bishop(PlayerColor Color, int x, int y):ChessPiece(Color, x,  y){
-
+          this->type_piece = "Bishop";
 }
 
 vector<ChessMove> Bishop::getPossibleMoves(const ChessBoard& board) const {

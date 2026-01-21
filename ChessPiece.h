@@ -13,7 +13,7 @@ class ChessBoard;
 class ChessMove;
 
 class ChessPiece {
-private:
+protected:
 	PlayerColor color;
 	int PositionX, PositionY;
 	string type_piece;
@@ -25,8 +25,10 @@ public:
 	PlayerColor getColor()const;
 	int getX() const;
 	int getY() const;
-	int setX(int x);
-    int setY(int y);
-	string getType_piece() const;
+    string getType_piece() const;
+	void setX(int x);
+	void setY(int y);
+    void setType_piece(string t_piece) ;
+
 };
 #endif

@@ -11,7 +11,7 @@
 using namespace std;
 
 Queen :: Queen(PlayerColor Color,int x, int y):ChessPiece(Color,  x,  y){
-
+       this->type_piece = "Queen";
 }
 
 vector<ChessMove> Queen::getPossibleMoves(const ChessBoard& board) const {

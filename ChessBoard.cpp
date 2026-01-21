@@ -64,7 +64,7 @@ bool ChessBoard::isKingInCheckAfterMove(ChessMove& move, ChessState* state) {
 	setPieceAt(move.getfromX(), move.getfromY(), nullptr);
 
 	ChessRules referee;
-    bool inCheck = referee.isChecked(state->getColor(), this);
+	bool inCheck = referee.isChecked(state->getColor(), this);
 
 	setPieceAt(move.getfromX(), move.getfromY(), pieceToMove);
     setPieceAt(move.gettoX(), move.gettoY(), capturedPiece);

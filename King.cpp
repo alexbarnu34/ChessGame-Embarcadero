@@ -5,9 +5,14 @@
 #include "King.h"
 #include "ChessBoard.h"
 #include "ChessMove.h"
+#include "Enum.h"
 #include <vector>
 //---------------------------------------------------------------------------
 using namespace std;
+
+King::King(PlayerColor Color, int x, int y ):ChessPiece(Color,x,y){
+	this->type_piece = "King";
+}
 
 vector<ChessMove> King::getPossibleMoves(const ChessBoard& board) const {
 	int x_current = this->getX();

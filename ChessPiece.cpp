@@ -30,10 +30,15 @@ string ChessPiece::getType_piece() const{
     return this->type_piece;
 }
 
-int ChessPiece::setX(int x){
+void ChessPiece::setX(int x){
 	this->PositionX=x;
 }
 
-int ChessPiece::setY(int y){
+void ChessPiece::setY(int y){
     this->PositionY=y;
+}
+
+
+void ChessPiece:: setType_piece(string t_piece){
+	this->type_piece=t_piece;
 }

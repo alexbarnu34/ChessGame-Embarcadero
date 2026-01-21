@@ -10,6 +10,7 @@
 using namespace std;
 
 Pawn ::Pawn(PlayerColor Color,int x, int y):ChessPiece (Color, x,  y){
+	this->type_piece = "Pawn";
 }
 
 vector<ChessMove> Pawn::getPossibleMoves(const ChessBoard& board) const  {

@@ -19,3 +19,7 @@ ChessBoard* ChessState::getBoard(){
 PlayerColor ChessState::getColor()const {
     return this->color;
 }
+
+void ChessState:: setColor(PlayerColor newColor) {
+    this->color = newColor;
+}

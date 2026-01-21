@@ -1034,4 +1034,5 @@
   ChessState.h Enum.h \
   C:\programe\GitHub\ChessGame-Embarcadero\ChessPiece.h \
   C:\programe\GitHub\ChessGame-Embarcadero\Enum.h ChessMove.h \
-  ChessRules.h
+  ChessRules.h Pawn.h ChessPiece.h Rook.h Knight.h Bishop.h Queen.h \
+  King.h
