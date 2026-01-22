@@ -1,12 +1,10 @@
-//---------------------------------------------------------------------------
-
 #pragma hdrstop
 
 #include "Rook.h"
 #include "ChessBoard.h"
 #include "ChessMove.h"
 #include <vector>
-//---------------------------------------------------------------------------
+
 using namespace std;
 
 Rook::Rook(PlayerColor color,int x, int y):ChessPiece(color, x, y){

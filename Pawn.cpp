@@ -1,12 +1,10 @@
-//---------------------------------------------------------------------------
-
 #pragma hdrstop
 
 #include "Pawn.h"
 #include "ChessBoard.h"
 #include "ChessMove.h"
 #include <vector>
-//---------------------------------------------------------------------------
+
 using namespace std;
 
 Pawn ::Pawn(PlayerColor Color,int x, int y):ChessPiece (Color, x,  y){

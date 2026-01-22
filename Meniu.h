@@ -1,8 +1,6 @@
-//---------------------------------------------------------------------------
-
 #ifndef MeniuH
 #define MeniuH
-//---------------------------------------------------------------------------
+
 #include <System.Classes.hpp>
 #include <Vcl.Controls.hpp>
 #include <Vcl.StdCtrls.hpp>
@@ -16,10 +14,10 @@
 #include <IdTCPConnection.hpp>
 #include <IdTCPServer.hpp>
 #include <Vcl.ExtCtrls.hpp>
-//---------------------------------------------------------------------------
+
 class TForm1 : public TForm
 {
-__published:	// IDE-managed Components
+__published:
 	TIdTCPServer *IdTCPServer1;
 	TIdTCPClient *IdTCPClient1;
 	TButton *Button1;
@@ -32,10 +30,10 @@ __published:	// IDE-managed Components
 	void __fastcall Timer1Timer(TObject *Sender);
     void __fastcall FormClose(TObject *Sender, TCloseAction &Action);
 private:
-public:		// User declarations
+public:
 	__fastcall TForm1(TComponent* Owner);
 };
-//---------------------------------------------------------------------------
+
 extern PACKAGE TForm1 *Form1;
-//---------------------------------------------------------------------------
+
 #endif

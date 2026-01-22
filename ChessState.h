@@ -1,12 +1,6 @@
-//---------------------------------------------------------------------------
-
 #ifndef ChessStateH
 #define ChessStateH
 #include "Enum.h"
-//---------------------------------------------------------------------------
-
-//enum class PlayerColor {White, Black};
-//enum class GameStatus {Running, Check, Checkmate, Draw, Abandoned};
 
 class ChessBoard;
 

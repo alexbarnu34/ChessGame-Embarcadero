@@ -1,5 +1,3 @@
-//---------------------------------------------------------------------------
-
 #ifndef ChessGameH
 #define ChessGameH
 #include "ChessBoard.h"
@@ -7,7 +5,7 @@
 #include "ChessPiece.h"
 #include "ChessMove.h"
 #include <vector>
-//---------------------------------------------------------------------------
+
 class ChessGame{
 	ChessBoard* board;
 	ChessState* state;

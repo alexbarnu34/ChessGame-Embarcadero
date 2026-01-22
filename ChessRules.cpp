@@ -1,13 +1,8 @@
-﻿//---------------------------------------------------------------------------
-
-#pragma hdrstop
-
-#include "ChessRules.h"
+﻿#include "ChessRules.h"
 #include "ChessPiece.h"
 #include "ChessMove.h"
 #include "ChessBoard.h"
 #include "ChessState.h"
-//---------------------------------------------------------------------------
 #pragma package(smart_init)
 #include <windows.h>
 #include <vector>
@@ -16,7 +11,6 @@ using namespace std;
 
 
 bool ChessRules::isValidMove(ChessMove* move, ChessState* state) {
-	// 1. Verificare de bază: coordonatele de destinație sunt pe tablă?
 	if (move->gettoX() < 0 || move->gettoX() > 7 || move->gettoY() < 0 || move->gettoY() > 7) {
 		return false;
 	}
@@ -26,13 +20,11 @@ bool ChessRules::isValidMove(ChessMove* move, ChessState* state) {
 		return false;
 	}
 
-	// 2. Verificăm piesa de la destinație (dacă există)
 	ChessPiece* targetPiece = state->getBoard()->getPieceAt(move->gettoX(), move->gettoY());
 	if (targetPiece != nullptr && targetPiece->getColor() == pieceToMove->getColor()) {
-		return false; // Nu poți lua propria piesă
+		return false; 
 	}
 
-	// 3. Verificăm lista de mutări specifice piesei
 	vector<ChessMove> possibleMoves = pieceToMove->getPossibleMoves(*(state->getBoard()));
 	bool found = false;
 	for (const auto& m : possibleMoves) {
@@ -44,7 +36,6 @@ bool ChessRules::isValidMove(ChessMove* move, ChessState* state) {
 
 	if (!found) return false;
 
-	// 4. Verificarea finală: Șahul
 	if (state->getBoard()->isKingInCheckAfterMove(*move, state)) {
 		return false;
 	}
@@ -111,7 +102,6 @@ bool ChessRules::isCheckmate(PlayerColor color, ChessBoard* board) {
 }
 
 bool ChessRules::hasValidMoves(PlayerColor color, ChessBoard* board, ChessState* state) {
-    // Mesaj de start
     OutputDebugString(L"--- Incepe verificarea hasValidMoves ---");
 
     for (int i = 0; i < 8; i++) {
@@ -119,8 +109,6 @@ bool ChessRules::hasValidMoves(PlayerColor color, ChessBoard* board, ChessState*
             ChessPiece* p = board->getPieceAt(i, j);
             if (p != nullptr && p->getColor() == color) {
 
-                // MODIFICARE AICI: Am adăugat .c_str() pentru getType_piece()
-                // și am forțat începutul liniei să fie UnicodeString
                 UnicodeString msg = UnicodeString("Verific piesa: ") +
                                     p->getType_piece().c_str() +
                                     " la [" + IntToStr(i) + "," + IntToStr(j) + "]";
@@ -140,28 +128,4 @@ bool ChessRules::hasValidMoves(PlayerColor color, ChessBoard* board, ChessState*
     OutputDebugString(L"!!! [FINAL] Nu am gasit nicio mutare valida. Sah-Mat sau Pat!");
     return false;
 }
-
-/*
-bool ChessRules::hasValidMoves(PlayerColor color, ChessBoard* board, ChessState* state) {
-    for (int i = 0; i < 8; i++) {
-        for (int j = 0; j < 8; j++) {
-            ChessPiece* p = board->getPieceAt(i, j);
-
-            // Căutăm toate piesele jucătorului care urmează la rând
-            if (p != nullptr && p->getColor() == color) {
-                vector<ChessMove> possible = p->getPossibleMoves(*board);
-
-                // Verificăm fiecare mutare teoretică prin filtrul isValidMove
-                // (care verifică deja dacă mutarea lasă regele în șah)
-                for (auto& m : possible) {
-                    if (this->isValidMove(&m, state)) {
-                        return true; // Am găsit cel puțin o mutare legală!
-                    }
-                }
-            }
-        }
-    }
-    return false; // Jucătorul este blocat complet
-}
-*/
 

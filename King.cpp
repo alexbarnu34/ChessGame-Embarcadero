@@ -1,5 +1,3 @@
-//---------------------------------------------------------------------------
-
 #pragma hdrstop
 
 #include "King.h"
@@ -7,7 +5,7 @@
 #include "ChessMove.h"
 #include "Enum.h"
 #include <vector>
-//---------------------------------------------------------------------------
+
 using namespace std;
 
 King::King(PlayerColor Color, int x, int y ):ChessPiece(Color,x,y){

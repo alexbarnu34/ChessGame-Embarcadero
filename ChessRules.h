@@ -1,9 +1,7 @@
-//---------------------------------------------------------------------------
-
 #ifndef ChessRulesH
 #define ChessRulesH
 #include "Enum.h"
-//---------------------------------------------------------------------------
+
 class ChessBoard;
 class ChessMove;
 class ChessState;

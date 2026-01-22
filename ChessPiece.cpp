@@ -1,11 +1,9 @@
-//---------------------------------------------------------------------------
-
 #pragma hdrstop
 
 #include "ChessPiece.h"
 #include "ChessBoard.h"
 #include "ChessMove.h"
-//---------------------------------------------------------------------------
+
 #pragma package(smart_init)
 
 ChessPiece::ChessPiece(PlayerColor c,int x, int y){

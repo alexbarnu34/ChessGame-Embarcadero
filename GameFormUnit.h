@@ -1,8 +1,6 @@
-//---------------------------------------------------------------------------
-
 #ifndef GameFormUnitH
 #define GameFormUnitH
-//---------------------------------------------------------------------------
+
 #include <System.Classes.hpp>
 #include <Vcl.Controls.hpp>
 #include <Vcl.StdCtrls.hpp>
@@ -20,7 +18,7 @@
 #include <IdContext.hpp>
 #include "Enum.h"
 #include <Vcl.ExtCtrls.hpp>
-//---------------------------------------------------------------------------
+
 class ChessGame;
 
 class TForm2 : public TForm
@@ -46,7 +44,7 @@ public:
         localPlayerColor = color;
     }
 };
-//---------------------------------------------------------------------------
+
 extern PACKAGE TForm2 *Form2;
-//---------------------------------------------------------------------------
+
 #endif

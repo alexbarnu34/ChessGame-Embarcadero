@@ -7,7 +7,7 @@
 #include "ChessRules.h"
 #include <string>
 #include <Vcl.XPStyleActnCtrls.hpp>
-#include "Meniu.h" // Necesar pentru a vedea Form1
+#include "Meniu.h"
 
 #pragma package(smart_init)
 #pragma resource "*.dfm"
@@ -38,7 +38,6 @@ void __fastcall TForm2::FormClose(TObject *Sender, TCloseAction &Action)
 
 void __fastcall TForm2::btnBackClick(TObject *Sender)
 {
-    // 1. Trimitem semnalul de abandon adversarului
     UnicodeString signal = "QUIT";
     if (Form1->IdTCPServer1->Active) {
         TList *list = Form1->IdTCPServer1->Contexts->LockList();
@@ -52,11 +51,9 @@ void __fastcall TForm2::btnBackClick(TObject *Sender)
 		Form1->IdTCPClient1->IOHandler->WriteLn(signal);
 	}
 
-	// 2. Oprim rețeaua locală
 	Form1->IdTCPServer1->Active = false;
 	if (Form1->IdTCPClient1->Connected()) Form1->IdTCPClient1->Disconnect();
 
-	// 3. Revenim la meniu (NU folosim Close() aici!)
 	this->Hide();
 	Form1->Show();
 }
@@ -72,7 +69,6 @@ void __fastcall TForm2::FormMouseDown(TObject *Sender, TMouseButton Button, TShi
     if (!game->pieceSelected) {
         ChessPiece* p = game->getState()->getBoard()->getPieceAt(clickedRow, clickedCol);
 
-        // Verificăm rândul culorii ȘI dacă piesa aparține jucătorului local
         if (p != nullptr && p->getColor() == game->getState()->getColor() && p->getColor() == localPlayerColor) {
             game->selectedX = clickedRow;
             game->selectedY = clickedCol;
@@ -98,7 +94,6 @@ void __fastcall TForm2::FormMouseDown(TObject *Sender, TMouseButton Button, TShi
                                     IntToStr(clickedRow) + "," +
                                     IntToStr(clickedCol);
 
-            // ACCESĂM REȚEAUA DE PE FORM1
             if (Form1->IdTCPServer1->Active) {
                 TList *list = Form1->IdTCPServer1->Contexts->LockList();
                 try {
@@ -162,17 +157,13 @@ void __fastcall TForm2::FormPaint(TObject *Sender)
 
 void TForm2::ApplyRemoteMove(UnicodeString msg) {
   if (msg == "QUIT") {
-        // PASUL 1: Oprim imediat "motoarele" rețelei
-        // Aceasta eliberează thread-urile blocate
         Form1->IdTCPServer1->Active = false;
         if (Form1->IdTCPClient1->Connected()) {
             Form1->IdTCPClient1->Disconnect();
         }
 
-        // PASUL 2: Acum că rețeaua e moartă, putem afișa mesaje
         ShowMessage("Adversarul a părăsit jocul.");
 
-        // PASUL 3: Resetăm starea și ne întoarcem la meniu
         this->Hide();
         Form1->Show();
         return;

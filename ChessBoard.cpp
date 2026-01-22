@@ -1,5 +1,3 @@
-//---------------------------------------------------------------------------
-
 #pragma hdrstop
 
 #include "ChessBoard.h"
@@ -16,7 +14,7 @@
 #include <vector>
 #include <string>
 using namespace std;
-//---------------------------------------------------------------------------
+
 #pragma package(smart_init)
 
 ChessBoard::ChessBoard() {

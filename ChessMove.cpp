@@ -1,10 +1,8 @@
-//---------------------------------------------------------------------------
-
 #pragma hdrstop
 
 #include "ChessMove.h"
 #include "ChessPiece.h"
-//---------------------------------------------------------------------------
+
 #pragma package(smart_init)
 ChessMove::ChessMove(int  fromX,int  fromY,int toX, int toY){
   this->fromX= fromX;
