@@ -5,6 +5,7 @@
 
 #include "Meniu.h"
 #include "GameFormUnit.h"
+#include <System.Classes.hpp>
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma resource "*.dfm"
@@ -69,12 +70,25 @@ void __fastcall TForm1::Button2Click(TObject *Sender) // CONNECT CLIENT
 
 void __fastcall TForm1::IdTCPServer1Execute(TIdContext *AContext)
 {
-   UnicodeString msg = AContext->Connection->IOHandler->ReadLn();
+    try {
+        // Verificăm dacă există date de citit fără a bloca firul la infinit
+        if (!AContext->Connection->IOHandler->InputBufferIsEmpty() ||
+             AContext->Connection->IOHandler->CheckForDataOnSource(10))
+        {
+            UnicodeString msg = AContext->Connection->IOHandler->ReadLn();
 
-    // Verificăm dacă Form2 există înainte de a-l apela
-    if (!msg.IsEmpty() && Form2 != nullptr) {
-        TThread::Synchronize(nullptr, [msg]() {
-            Form2->ApplyRemoteMove(msg);
+            if (!msg.IsEmpty()) {
+                TThread::Synchronize(nullptr, [this, msg]() {
+                    if (Form2 != nullptr) Form2->ApplyRemoteMove(msg);
+                });
+            }
+        }
+    } catch (const Exception &e) {
+        // Dacă apare orice eroare de socket, deconectăm și anunțăm UI-ul
+        TThread::Synchronize(nullptr, [this]() {
+            if (Form2 && Form2->Visible) {
+                Form2->ApplyRemoteMove("QUIT");
+            }
         });
     }
 }

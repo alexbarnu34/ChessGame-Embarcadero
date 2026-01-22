@@ -19,19 +19,6 @@ __fastcall TForm2::TForm2(TComponent* Owner): TForm(Owner)
     game->getState()->getBoard()->InitializeDefaultPosition();
 }
 
-void __fastcall TForm2::btnBackClick(TObject *Sender)
-{
-    // Oprim conexiunea curentă pentru a putea începe una nouă ulterior
-    Form1->IdTCPServer1->Active = false;
-    if (Form1->IdTCPClient1->Connected()) {
-        Form1->IdTCPClient1->Disconnect();
-    }
-
-    // NU folosim this->Close() aici, pentru că Close va apela Application->Terminate
-    // Folosim Hide() pentru a ascunde tabla și Show() pentru a vedea meniul
-    this->Hide();
-    Form1->Show();
-}
 void __fastcall TForm2::FormCreate(TObject *Sender)
 {
     ChessGame::getInstance()->initGame();
@@ -44,14 +31,40 @@ void __fastcall TForm2::FormClose(TObject *Sender, TCloseAction &Action)
         Form1->IdTCPClient1->Disconnect();
     }
 
-    // 2. Închidem definitiv aplicația
-    Application->Terminate();
+    if (this->Visible) {
+        Application->Terminate();
+    }
+}
+
+void __fastcall TForm2::btnBackClick(TObject *Sender)
+{
+    // 1. Trimitem semnalul de abandon adversarului
+    UnicodeString signal = "QUIT";
+    if (Form1->IdTCPServer1->Active) {
+        TList *list = Form1->IdTCPServer1->Contexts->LockList();
+        try {
+            for (int i = 0; i < list->Count; i++) {
+                ((TIdContext*)list->Items[i])->Connection->IOHandler->WriteLn(signal);
+            }
+        } __finally { Form1->IdTCPServer1->Contexts->UnlockList(); }
+    }
+    else if (Form1->IdTCPClient1->Connected()) {
+		Form1->IdTCPClient1->IOHandler->WriteLn(signal);
+	}
+
+	// 2. Oprim rețeaua locală
+	Form1->IdTCPServer1->Active = false;
+	if (Form1->IdTCPClient1->Connected()) Form1->IdTCPClient1->Disconnect();
+
+	// 3. Revenim la meniu (NU folosim Close() aici!)
+	this->Hide();
+	Form1->Show();
 }
 
 void __fastcall TForm2::FormMouseDown(TObject *Sender, TMouseButton Button, TShiftState Shift, int X, int Y)
 {
-    int cellSize = 60;
-    int clickedRow = Y / cellSize;
+	int cellSize = 60;
+	int clickedRow = Y / cellSize;
     int clickedCol = X / cellSize;
 
     if (clickedRow > 7 || clickedCol > 7) return;
@@ -148,6 +161,23 @@ void __fastcall TForm2::FormPaint(TObject *Sender)
 }
 
 void TForm2::ApplyRemoteMove(UnicodeString msg) {
+  if (msg == "QUIT") {
+        // PASUL 1: Oprim imediat "motoarele" rețelei
+        // Aceasta eliberează thread-urile blocate
+        Form1->IdTCPServer1->Active = false;
+        if (Form1->IdTCPClient1->Connected()) {
+            Form1->IdTCPClient1->Disconnect();
+        }
+
+        // PASUL 2: Acum că rețeaua e moartă, putem afișa mesaje
+        ShowMessage("Adversarul a părăsit jocul.");
+
+        // PASUL 3: Resetăm starea și ne întoarcem la meniu
+        this->Hide();
+        Form1->Show();
+        return;
+    }
+
     try {
         std::unique_ptr<TStringList> list(new TStringList());
         list->CommaText = msg;
@@ -162,7 +192,7 @@ void TForm2::ApplyRemoteMove(UnicodeString msg) {
             this->Invalidate();
         }
     } catch (...) {
-        OutputDebugString(L"Eroare la procesarea mesajului de rețea.");
+        OutputDebugString(L"Eroare la procesarea mesajului.");
     }
 }
 
