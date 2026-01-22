@@ -35,9 +35,13 @@ void ChessPiece::setX(int x){
 }
 
 void ChessPiece::setY(int y){
-    this->PositionY=y;
+	this->PositionY=y;
 }
 
+void ChessPiece::setPositionTo(int toX,int toY){
+	this->PositionX= toX;
+    this->PositionY= toY;
+}
 
 void ChessPiece:: setType_piece(string t_piece){
 	this->type_piece=t_piece;

@@ -20,6 +20,14 @@ PlayerColor ChessState::getColor()const {
     return this->color;
 }
 
+GameStatus ChessState::getStatus() const{
+    return this->status;
+}
+
 void ChessState:: setColor(PlayerColor newColor) {
     this->color = newColor;
+}
+
+void ChessState:: setStatus(GameStatus stat){
+    this->status = stat;
 }

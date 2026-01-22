@@ -13,6 +13,7 @@ class ChessRules{
 	ChessRules()=default;
 	bool isValidMove(ChessMove* move, ChessState* state);
 	bool isChecked(PlayerColor color, ChessBoard* board);
-    bool isCheckmate(PlayerColor color, ChessBoard* board);
+	bool isCheckmate(PlayerColor color, ChessBoard* board);
+    bool hasValidMoves(PlayerColor color, ChessBoard* board, ChessState* state);
 };
 #endif

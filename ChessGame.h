@@ -4,6 +4,9 @@
 #define ChessGameH
 #include "ChessBoard.h"
 #include "ChessState.h"
+#include "ChessPiece.h"
+#include "ChessMove.h"
+#include <vector>
 //---------------------------------------------------------------------------
 class ChessGame{
 	ChessBoard* board;
@@ -28,6 +31,12 @@ class ChessGame{
 	int selectedX, selectedY;
 
 	bool pieceSelected;
+
+	vector<ChessMove> currentValidMoves;
+
+	void setupTestMate();
+
+    void setupTestStalemate();
 };
 
 #endif

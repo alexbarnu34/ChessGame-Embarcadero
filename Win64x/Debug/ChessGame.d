@@ -1031,5 +1031,5 @@
   c:\program\ files\ (x86)\embarcadero\studio\37.0\include\x86_64-w64-mingw32\c++\v1\__vector\pmr.h \
   c:\program\ files\ (x86)\embarcadero\studio\37.0\include\x86_64-w64-mingw32\c++\v1\__vector\erase.h \
   c:\program\ files\ (x86)\embarcadero\studio\37.0\include\x86_64-w64-mingw32\c++\v1\__vector\vector_bool_formatter.h \
-  ChessState.h Enum.h ChessMove.h ChessRules.h Pawn.h ChessPiece.h \
+  ChessState.h Enum.h ChessPiece.h ChessMove.h ChessRules.h Pawn.h \
   Rook.h Knight.h Bishop.h Queen.h King.h

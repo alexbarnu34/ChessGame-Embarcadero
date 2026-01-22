@@ -25,9 +25,11 @@ vector<ChessMove> Pawn::getPossibleMoves(const ChessBoard& board) const  {
 
 		int startRow = (this->getColor() == PlayerColor::White) ? 6 : 1;
         int doubleNextX = x + 2 * direction;
-        if (x == startRow && board.getPieceAt(doubleNextX, y) == nullptr) {
-            moves.push_back(ChessMove(x, y, doubleNextX, y));
-        }
+        if (x == startRow) {
+			if (doubleNextX >= 0 && doubleNextX < 8 && board.getPieceAt(doubleNextX, y) == nullptr) {
+				moves.push_back(ChessMove(x, y, doubleNextX, y));
+			}
+		}
     }
 
     int diagY[] = {y - 1, y + 1};

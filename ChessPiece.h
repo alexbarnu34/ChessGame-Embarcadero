@@ -28,6 +28,7 @@ public:
     string getType_piece() const;
 	void setX(int x);
 	void setY(int y);
+    void setPositionTo(int toX,int toY);
     void setType_piece(string t_piece) ;
 
 };

@@ -10,14 +10,52 @@ object Form1: TForm1
   Font.Height = -12
   Font.Name = 'Segoe UI'
   Font.Style = []
+  OnClick = Button1Click
   TextHeight = 15
-  object btnStart: TButton
-    Left = 248
-    Top = 152
+  object Button1: TButton
+    Left = 152
+    Top = 184
     Width = 75
     Height = 25
-    Caption = 'START JOC'
+    Caption = 'Start Server'
     TabOrder = 0
-    OnClick = btnStartClick
+    OnClick = Button1Click
+  end
+  object Edit1: TEdit
+    Left = 223
+    Top = 256
+    Width = 121
+    Height = 23
+    TabOrder = 1
+    Text = '127.0.0.1'
+  end
+  object Button2: TButton
+    Left = 344
+    Top = 184
+    Width = 75
+    Height = 25
+    Caption = 'Connect Server'
+    TabOrder = 2
+    OnClick = Button2Click
+  end
+  object IdTCPServer1: TIdTCPServer
+    Bindings = <>
+    DefaultPort = 0
+    OnExecute = IdTCPServer1Execute
+    Left = 576
+    Top = 32
+  end
+  object IdTCPClient1: TIdTCPClient
+    ConnectTimeout = 0
+    Port = 0
+    ReadTimeout = -1
+    Left = 576
+    Top = 96
+  end
+  object Timer1: TTimer
+    Interval = 100
+    OnTimer = Timer1Timer
+    Left = 560
+    Top = 360
   end
 end

@@ -24,6 +24,7 @@ vector<ChessMove> Rook::getPossibleMoves(const ChessBoard& board) const {
 		moves.push_back(ChessMove(x_current,y_current,i,y_current));
 	   }else if(found_piece->getColor()!=this->getColor()){
 		   moves.push_back(ChessMove(x_current,y_current,found_piece->getX(),found_piece->getY()));
+           break;
 	   }else{
 		   break;
 	   }
@@ -35,6 +36,7 @@ vector<ChessMove> Rook::getPossibleMoves(const ChessBoard& board) const {
 		moves.push_back(ChessMove(x_current,y_current,i,y_current));
 	   }else if(found_piece->getColor()!=this->getColor()){
 		   moves.push_back(ChessMove(x_current,y_current,found_piece->getX(),found_piece->getY()));
+           break;
 	   }else{
 		   break;
 	   }
@@ -46,6 +48,7 @@ vector<ChessMove> Rook::getPossibleMoves(const ChessBoard& board) const {
 		moves.push_back(ChessMove(x_current,y_current,x_current,i));
 	   }else if(found_piece->getColor()!=this->getColor()){
 		   moves.push_back(ChessMove(x_current,y_current,found_piece->getX(),found_piece->getY()));
+           break;
 	   }else{
 		   break;
 	   }
@@ -57,6 +60,7 @@ vector<ChessMove> Rook::getPossibleMoves(const ChessBoard& board) const {
 		moves.push_back(ChessMove(x_current,y_current,x_current,i));
 	   }else if(found_piece->getColor()!=this->getColor()){
 		   moves.push_back(ChessMove(x_current,y_current,found_piece->getX(),found_piece->getY()));
+           break;
 	   }else{
 		   break;
 	   }

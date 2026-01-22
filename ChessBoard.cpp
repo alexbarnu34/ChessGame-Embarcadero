@@ -56,18 +56,22 @@ bool ChessBoard::tryMove(ChessMove& move){
 }
 
 bool ChessBoard::isKingInCheckAfterMove(ChessMove& move, ChessState* state) {
-
 	ChessPiece* pieceToMove = getPieceAt(move.getfromX(), move.getfromY());
 	ChessPiece* capturedPiece = getPieceAt(move.gettoX(), move.gettoY());
 
-	setPieceAt(move.gettoX(), move.gettoY(), pieceToMove);
-	setPieceAt(move.getfromX(), move.getfromY(), nullptr);
+	int oldX = pieceToMove->getX();
+	int oldY = pieceToMove->getY();
+
+    setPieceAt(move.gettoX(), move.gettoY(), pieceToMove);
+    setPieceAt(move.getfromX(), move.getfromY(), nullptr);
+	pieceToMove->setPositionTo(move.gettoX(), move.gettoY());
 
 	ChessRules referee;
-	bool inCheck = referee.isChecked(state->getColor(), this);
+    bool inCheck = referee.isChecked(state->getColor(), this);
 
-	setPieceAt(move.getfromX(), move.getfromY(), pieceToMove);
+    setPieceAt(move.getfromX(), move.getfromY(), pieceToMove);
     setPieceAt(move.gettoX(), move.gettoY(), capturedPiece);
+	pieceToMove->setPositionTo(oldX, oldY);
 
     return inCheck;
 }
@@ -104,9 +108,10 @@ void ChessBoard::movePiece(int fromX, int fromY, int toX, int toY) {
         delete targetPiece;
     }
 
-    t[toX][toY] = pieceToMove;
-    t[fromX][fromY] = nullptr;
+	setPieceAt(toX, toY, pieceToMove);
+	setPieceAt(fromX, fromY, nullptr);
 
+	pieceToMove->setPositionTo(toX,toY);
 }
 
 void ChessBoard::InitializeDefaultPosition() {

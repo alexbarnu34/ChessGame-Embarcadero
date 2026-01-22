@@ -1,4 +1,4 @@
-//---------------------------------------------------------------------------
+﻿//---------------------------------------------------------------------------
 
 #pragma hdrstop
 
@@ -22,7 +22,11 @@ ChessGame::ChessGame(){
 	this->board = new ChessBoard();
 	this->state = new ChessState(this->board, PlayerColor::White,GameStatus::Running);
 	this->board->InitializeDefaultPosition();
-    initGame();
+	initGame();
+
+    this->selectedX = -1;
+    this->selectedY = -1;
+    this->pieceSelected = false;
 }
 
 ChessGame* ChessGame::getInstance(){
@@ -32,16 +36,46 @@ ChessGame* ChessGame::getInstance(){
 	return instance;
 }
 
+// În ChessBoard.cpp (temporar, pentru test)
+void ChessGame::setupTestMate() {
+		ChessBoard* b= this->state->getBoard();
+		b->clear(); // O metodă care pune nullptr peste tot în matrice
+
+	// Regele Negru încolțit la marginea de sus
+	b->setPieceAt(0, 4, new King(PlayerColor::Black, 0, 4));
+
+	// Regele Alb (trebuie să existe pe tablă)
+	b->setPieceAt(7, 4, new King(PlayerColor::White, 7, 4));
+
+	// Două Ture Albe care fac "scara"
+	b->setPieceAt(1, 0, new Rook(PlayerColor::White, 1, 0)); // Taie linia 1
+	b->setPieceAt(0, 7, new Rook(PlayerColor::White, 0, 7)); // Dă șah pe linia 0
+}
+
+void ChessGame::setupTestStalemate() {
+	ChessBoard* b= this->state->getBoard();
+	b->clear();
+
+	// Regele Negru în colț
+	b->setPieceAt(0, 0, new King(PlayerColor::Black, 0, 0));
+
+	// Regele Alb aproape de el
+	b->setPieceAt(2, 1, new King(PlayerColor::White, 2, 1));
+
+	// O Regină Albă care îi "ia" toate pătrățelele, dar NU îi dă șah
+	b->setPieceAt(1, 2, new Queen(PlayerColor::White, 1, 2));
+}
+
 void ChessGame :: initGame(){
 	  ChessBoard* b= this->state->getBoard();
 	  b->clear();
 
 	b->setPieceAt(0, 0, new Rook(PlayerColor::Black, 0, 0));
-    b->setPieceAt(0, 1, new Knight(PlayerColor::Black, 0, 1));
-    b->setPieceAt(0, 2, new Bishop(PlayerColor::Black, 0, 2));
-    b->setPieceAt(0, 3, new Queen(PlayerColor::Black, 0, 3));
-    b->setPieceAt(0, 4, new King(PlayerColor::Black, 0, 4));
-    b->setPieceAt(0, 5, new Bishop(PlayerColor::Black, 0, 5));
+	b->setPieceAt(0, 1, new Knight(PlayerColor::Black, 0, 1));
+	b->setPieceAt(0, 2, new Bishop(PlayerColor::Black, 0, 2));
+	b->setPieceAt(0, 3, new Queen(PlayerColor::Black, 0, 3));
+	b->setPieceAt(0, 4, new King(PlayerColor::Black, 0, 4));
+	b->setPieceAt(0, 5, new Bishop(PlayerColor::Black, 0, 5));
     b->setPieceAt(0, 6, new Knight(PlayerColor::Black, 0, 6));
 	b->setPieceAt(0, 7, new Rook(PlayerColor::Black, 0, 7));
 
@@ -64,19 +98,55 @@ void ChessGame :: initGame(){
 }
 
 bool ChessGame::makeMove(int fromX, int fromY, int toX, int toY) {
-	ChessMove move(fromX, fromY, toX, toY);
+    ChessMove move(fromX, fromY, toX, toY);
     ChessRules referee;
 
-	if (referee.isValidMove(&move, state)) {
+    // 1. Verificăm dacă mutarea este validă
+    if (referee.isValidMove(&move, state)) {
 
+        // 2. Executăm mutarea fizică pe tablă
         board->movePiece(fromX, fromY, toX, toY);
 
+        // --- LOGICA DE PROMOVARE (SIMPLIFICATĂ) ---
+        ChessPiece* p = board->getPieceAt(toX, toY);
+
+        // Verificăm dacă piesa care tocmai s-a mutat este un Pion
+        if (p != nullptr && p->getType_piece() == "Pawn") {
+            // Alb (White) ajunge pe linia 0, Negru (Black) ajunge pe linia 7
+            if ((p->getColor() == PlayerColor::White && toX == 0) ||
+                (p->getColor() == PlayerColor::Black && toX == 7))
+            {
+                PlayerColor colorPawn = p->getColor();
+
+                // Eliminăm obiectul Pion de pe tablă
+                delete p;
+
+                // Punem în locul lui o Regină nouă de aceeași culoare
+                board->setPieceAt(toX, toY, new Queen(colorPawn, toX, toY));
+            }
+        }
+        // ------------------------------------------
+
+        // 3. Schimbăm rândul (Culoarea curentă)
         PlayerColor nextColor = (state->getColor() == PlayerColor::White)
                                 ? PlayerColor::Black : PlayerColor::White;
-        state->setColor(nextColor);
+		state->setColor(nextColor);
+
+        if (!referee.hasValidMoves(nextColor, board, state)) {
+            if (referee.isChecked(nextColor, board)) {
+                // ȘAH-MAT: Nu mai are mutări și este în șah
+                if (nextColor == PlayerColor::White)
+					state->setStatus(GameStatus::BlackWins);
+				else
+					state->setStatus(GameStatus::WhiteWins);
+			} else {
+				// REMIZĂ (Stalemate): Nu mai are mutări, dar NU este în șah
+				state->setStatus(GameStatus::Draw);
+			}
+		}
 
 		return true;
-    }
+	}
 
 	return false;
 }

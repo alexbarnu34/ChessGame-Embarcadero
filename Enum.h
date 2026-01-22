@@ -5,5 +5,5 @@
 //---------------------------------------------------------------------------
 
 enum class PlayerColor {White, Black};
-enum class GameStatus {Running, Check, Checkmate, Draw, Abandoned};
+enum class GameStatus {Running, Check, Checkmate, Draw, Abandoned,BlackWins,WhiteWins};
 #endif
